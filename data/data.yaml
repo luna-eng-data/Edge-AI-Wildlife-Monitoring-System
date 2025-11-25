@@ -1,0 +1,44 @@
+# Dataset configuration for YOLO training
+
+path: /content/drive/MyDrive/ProjetGreenAI/datasets/wildlife_human_final
+train: train/images
+val: valid/images
+test: test/images
+
+# Classes
+names:
+  0: buffalo
+  1: elephant
+  2: rhino
+  3: zebra
+  4: person
+
+# Number of classes
+nc: 5
+```
+
+4. **"Commit message"** : `Add dataset configuration file`
+5. Clique **"Commit changes"**
+
+---
+
+### **4. Créer les dossiers vides**
+
+Pour créer les dossiers `notebooks/`, `results/` :
+
+1. Clique **"Add file"** → **"Create new file"**
+2. Tape : `notebooks/.gitkeep`
+3. Laisse le fichier vide
+4. **"Commit message"** : `Create notebooks directory`
+5. Commit
+
+Répète pour :
+- `results/.gitkeep`
+
+---
+
+### **5. Copier l'URL du repository**
+
+En haut de la page, copie l'URL complète :
+```
+https://github.com/luna-eng-data/wildlife-conflict-detection
