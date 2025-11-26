@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 ## Resultats
 
-Les resultats seront ajoutes apres l'entrainement du modele.
+Les resultats seront ajouter après l'entrainement du modèle.
 
 ## Articles de reference
 
@@ -71,7 +71,7 @@ Les resultats seront ajoutes apres l'entrainement du modele.
 
 ## Equipe
 
-Projet realise par l'equipe DIA6 - Novembre 2024
+Projet realisé par l'equipe DIA6 - Novembre 2025
 
 ## Licence
 
