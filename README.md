@@ -15,7 +15,7 @@ Ce projet vise a automatiser la detection de zones a risque de conflit entre hum
 ## Dataset
 
 - **Total** : 2063 images annotees
-- **Classes** : 5 (buffalo, elephant, rhino, zebra, person)
+- **Classes** : 5 (buffalo, elephant, rhinocéros, zebra, person)
 - **Format** : YOLO
 - **Split** : 
   - Train : 1650 images (80%)
