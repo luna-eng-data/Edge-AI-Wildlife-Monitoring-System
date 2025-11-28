@@ -1,78 +1,39 @@
-# Wildlife Human Conflict Detection using YOLO
+#  Eco-Sentinel : Filtrage Intelligent pour la Surveillance Faunique
 
-Projet de Machine Learning - DIA6 - Detection automatique des conflits homme-faune
+![Python](https://img.shields.io/badge/Python-3.10-blue) ![TensorFlow](https://img.shields.io/badge/Framework-TensorFlow-orange) ![GreenAI](https://img.shields.io/badge/Focus-Green_AI-green)
 
-## Contexte
+> **Projet DIA6 - Green AI & Computer Vision**
+> Système de filtrage embarqué (Edge AI) pour optimiser la surveillance des parcs naturels et réduire l'empreinte carbone numérique.
 
-Ce projet vise a automatiser la detection de zones a risque de conflit entre humains et animaux sauvages en Afrique, en utilisant le deep learning sur des images de cameras pieges.
+##  Contexte et Problématique
+Les parcs naturels africains utilisent des caméras pièges connectées par satellite pour lutter contre le braconnage et les conflits homme-faune. Cependant, cette technologie fait face à un mur technologique et écologique :
+1.  **Coût Écologique & Financier :** Transmettre des milliers d'images par satellite (souvent "vides" ou sans intérêt) consomme énormément d'énergie et de bande passante coûteuse.
+2.  **Latence :** Les rangers sont noyés sous les données brutes, retardant l'intervention en cas d'intrusion humaine.
 
-## Objectifs
+##  Notre Solution : Le Filtrage "Edge AI"
+Au lieu de déporter l'analyse dans le cloud (approche classique), nous proposons un modèle d'Intelligence Artificielle léger capable de tourner directement sur la caméra (**Edge Computing**).
 
-- Detecter automatiquement animaux (buffalo, elephant, rhino, zebra) et humains
-- Identifier les zones geographiques de chevauchement
-- Fournir des cartes de densite pour optimiser les patrouilles
+Le système agit comme un filtre intelligent :
+-   **Faune (Animaux) :** L'image est stockée localement pour les statistiques (0 transmission = 0g CO2).
+-   **Humain (Danger) :** L'image déclenche une **alerte prioritaire** et est transmise immédiatement.
 
-## Dataset
+##  Architecture Technique & Choix Green AI
 
-- **Total** : 2063 images annotees
-- **Classes** : 5 (buffalo, elephant, rhinocéros, zebra, person)
-- **Format** : YOLO
-- **Split** : 
-  - Train : 1650 images (80%)
-  - Validation : 205 images (10%)
-  - Test : 208 images (10%)
-- **Validation reelle** : 40 images mixtes (animaux + humains)
+### Pourquoi avons-nous abandonné YOLO ?
+Initialement partis sur une solution de détection d'objets (YOLO), nous avons pivoté vers une architecture de **Classification (MobileNetV2)** pour maximiser l'impact Green AI :
+*   **Complexité réduite :** MobileNetV2 est spécifiquement conçu pour les processeurs mobiles.
+*   **Consommation énergétique :** L'inférence est plus rapide et demande moins de calculs que la génération de bounding boxes.
+*   **Pertinence :** Pour une alerte de sécurité, savoir *où* est l'humain au pixel près est moins crucial que de savoir *s'il y a* un humain.
 
-## Methodologie
+### Stack Technique
+*   **Modèle :** MobileNetV2 (Transfer Learning sur ImageNet).
+*   **Framework :** TensorFlow / Keras.
+*   **Input :** Images redimensionnées en 224x224 (Standardisation low-res).
 
-- **Modele** : YOLOv8 nano
-- **Approche** : Transfer learning
-- **Framework** : Ultralytics (PyTorch)
-- **Infrastructure** : Google Colab (GPU T4)
+##  Structure du Dataset
+Nous avons agrégé et nettoyé plusieurs sources de données (Kaggle African Wildlife & Human Detection) pour constituer un dataset équilibré pour la classification binaire :
 
-## Structure du projet
-```
-wildlife-conflict-detection/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── requirements.txt
-├── notebooks/
-│   └── 02_train_model.ipynb
-├── data/
-│   └── data.yaml
-└── results/
-    ├── model/
-    ├── plots/
-    └── maps/
-```
-
-## Installation
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-
-### Sur Google Colab
-
-1. Ouvrir le notebook `notebooks/02_train_model.ipynb`
-2. Executer les cellules sequentiellement
-3. Les resultats sont sauvegardes automatiquement
-
-## Resultats
-
-Les resultats seront ajouter après l'entrainement du modèle.
-
-## Articles de reference
-
-1. Multi-perspective monitoring of wildlife and human activities from camera traps and drones with deep learning models (arXiv:2508.15629)
-2. A completer
-
-## Equipe
-
-Projet realisé par l'equipe DIA6 - Novembre 2025
-
-## Licence
-
-MIT License
+```text
+dataset_classification/
+├──  animaux/  (1500+ images : Buffles, Éléphants, Rhinos, Zèbres)
+└──  humains/  (500+ images : Détection de personnes en milieu varié)
